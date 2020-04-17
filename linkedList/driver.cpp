@@ -19,15 +19,20 @@ int main(int argc, char* argv[])
     else
     {
         string line;
-        int number = 0; 
+        string number = 0; 
         int idx = 0; 
         while (getline(LinkedListTestData, line))
         {
             stringstream ss(line);
             while (getline(ss, number, ','))
             {
-                testData[idx] = number;
+                testData[idx] = stoi(number);
+                idx++;
             }
+        }
+        for (int i = 0; i < 25; i++)
+        {
+            cout << testData[i] << endl;
         }
     }
 }
