@@ -10,8 +10,7 @@ int main(int argc, char* argv[])
     int testData[40000];
     float insert[400];
     float search[400];
-    string openFile = argv[1];
-    ifstream LinkedListTestData(openFile);
+    ifstream LinkedListTestData(argv[1]);
     if (LinkedListTestData.fail())
     {
         return -1;
@@ -19,18 +18,15 @@ int main(int argc, char* argv[])
     else
     {
         string line;
-        string number = 0; 
+        string number; 
         int idx = 0; 
-        while (getline(LinkedListTestData, line))
+        while (getline(LinkedListTestData, line, ','))
         {
-            stringstream ss(line);
-            while (getline(ss, number, ','))
-            {
-                testData[idx] = stoi(number);
-                idx++;
-            }
+            testData[idx] = stoi(line);
+            idx++;
         }
-        for (int i = 0; i < 25; i++)
+        
+        for (int i = 0; i < 10; i++)
         {
             cout << testData[i] << endl;
         }
