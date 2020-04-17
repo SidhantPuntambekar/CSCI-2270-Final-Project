@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include "LinkedList.h"
+#include <chrono>
 using namespace std;
 
 int main(int argc, char* argv[])
@@ -26,11 +27,24 @@ int main(int argc, char* argv[])
             testData[idx] = stoi(line);
             idx++;
         }
-        LL.insert(NULL, testData[0]);
-        for (int i = 1; i < 100; i++)
+        int insertElements = 0;
+        while (insertElements < 100)
         {
-            LL.insert(LL.searchList(testData[i-1]), testData[i]);
-            LL.printList();
+            auto start = std::chrono::system_clock::now();
+            LL.insert(NULL, testData[0]); 
+            for (int i = 1; i < 100; i++)
+            {
+                LL.insert(LL.searchList(testData[i-1]), testData[i]);
+                //LL.printList();
+            }
+            auto end = std::chrono::system_clock::now();
+            std::chrono::duration<double> elapsed_seconds = end-start;
+            insert[insertElements] = elapsed_seconds.count();
+            insertElements++;
+        }
+        for (int i = 0; i < insertElements; i++)
+        {
+            cout << insert[i] << endl;
         }
     }
 }
