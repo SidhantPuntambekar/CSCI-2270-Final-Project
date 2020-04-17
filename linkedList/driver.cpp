@@ -20,15 +20,17 @@ int main(int argc, char* argv[])
         string line;
         string number; 
         int idx = 0; 
+        LinkedList LL;
         while (getline(LinkedListTestData, line, ','))
         {
             testData[idx] = stoi(line);
             idx++;
         }
-        
-        for (int i = 0; i < 10; i++)
+        LL.insert(NULL, testData[0]);
+        for (int i = 1; i < 100; i++)
         {
-            cout << testData[i] << endl;
+            LL.insert(LL.searchList(testData[i-1]), testData[i]);
+            LL.printList();
         }
     }
 }
