@@ -28,21 +28,24 @@ int main(int argc, char* argv[])
             idx++;
         }
         int insertElements = 0;
-        while (insertElements < 100)
+        for (int i = 0; i < 40000; i+=100)
         {
-            auto start = std::chrono::system_clock::now();
-            LL.insert(NULL, testData[0]); 
-            for (int i = 1; i < 100; i++)
+            while (insertElements < 100)
             {
-                LL.insert(LL.searchList(testData[i-1]), testData[i]);
-                //LL.printList();
+                auto start = std::chrono::system_clock::now();
+                LL.insert(NULL, testData[0]); 
+                for (int i = 1; i < 100; i++)
+                {
+                    LL.insert(LL.searchList(testData[i-1]), testData[i]);
+                    //LL.printList();
+                }
+                auto end = std::chrono::system_clock::now();
+                std::chrono::duration<double> elapsed_seconds = end-start;
+                insert[insertElements] = elapsed_seconds.count();
+                insertElements++;
             }
-            auto end = std::chrono::system_clock::now();
-            std::chrono::duration<double> elapsed_seconds = end-start;
-            insert[insertElements] = elapsed_seconds.count();
-            insertElements++;
         }
-        for (int i = 0; i < insertElements; i++)
+        for (int i = 0; i < 400; i++)
         {
             cout << insert[i] << endl;
         }
