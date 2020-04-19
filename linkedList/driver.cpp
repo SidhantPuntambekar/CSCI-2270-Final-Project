@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
             }
             high_resolution_clock::time_point end = high_resolution_clock::now();
             duration<double> execTime = duration_cast<microseconds>(end - start);
-            insert[numEntries/100] = (execTime.count());
+            insert[numEntries/100] = (execTime.count())/100;
             numEntries += 100;
         }
         for (int i = 0; i < 400; i++)
