@@ -32,15 +32,17 @@ int main(int argc, char* argv[])
         int numEntries = 0;
         while (numEntries < 40000)
         {
-            high_resolution_clock::time_point start = high_resolution_clock::now();
+            high_resolution_clock::time_point startInsert = high_resolution_clock::now();
             LL.insert(NULL, testData[numEntries]); 
             for (int i = numEntries; i < numEntries+100; i++)
             {
                 LL.insert(LL.searchList(testData[i-1]), testData[i]);
             }
-            high_resolution_clock::time_point end = high_resolution_clock::now();
-            duration<double> execTime = duration_cast<microseconds>(end - start);
-            insert[numEntries/100] = (execTime.count())/100;
+            high_resolution_clock::time_point endInsert = high_resolution_clock::now();
+            duration<double> execTimeInsert = duration_cast<microseconds>(endInsert - startInsert);
+            insert[numEntries/100] = (execTimeInsert.count())/100;
+
+            
             numEntries += 100;
         }
         for (int i = 0; i < 400; i++)
