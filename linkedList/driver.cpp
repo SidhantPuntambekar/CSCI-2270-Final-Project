@@ -5,6 +5,7 @@
 #include "LinkedList.h"
 #include <chrono>
 using namespace std;
+using namespace std::chrono;
 
 int main(int argc, char* argv[])
 {
@@ -29,22 +30,17 @@ int main(int argc, char* argv[])
         }
         int insertElements = 1;
         int numEntries = 0;
-        int i = 0;
         while (numEntries < 40000)
         {
-            auto start = std::chrono::system_clock::now();
+            high_resolution_clock::time_point start = high_resolution_clock::now();
             LL.insert(NULL, testData[numEntries]); 
-            while (insertElements < 100)
+            for (int i = numEntries; i < numEntries+100; i++)
             {
-                
-                LL.insert(LL.searchList(testData[insertElements-1]), testData[insertElements]);
-                //LL.printList();
-                insertElements++;
+                LL.insert(LL.searchList(testData[i-1]), testData[i]);
             }
-            auto end = std::chrono::system_clock::now();
-            std::chrono::duration<double> elapsed_seconds = end-start;
-            insert[i] = (elapsed_seconds.count())/(100);
-            //i++;
+            high_resolution_clock::time_point end = high_resolution_clock::now();
+            duration<double> execTime = duration_cast<microseconds>(end - start);
+            insert[numEntries/100] = (execTime.count());
             numEntries += 100;
         }
         for (int i = 0; i < 400; i++)

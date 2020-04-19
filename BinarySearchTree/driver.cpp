@@ -5,6 +5,7 @@
 #include "BST.hpp"
 #include <chrono>
 using namespace std;
+using namespace std::chrono;
 
 int main(int argc, char* argv[])
 {
@@ -28,25 +29,22 @@ int main(int argc, char* argv[])
             idx++;
         }
         int insertElements = 0;
-        auto start = std::chrono::system_clock::now();
-        BST mailData(testData[0]);
+        BST mailData;
         int numEntries = 0;
         while (numEntries < 40000)
         {
-            while (insertElements < 100)
+            high_resolution_clock::time_point start = high_resolution_clock::now();
+            mailData.addNode(testData[numEntries]); 
+            for (int i = numEntries; i < numEntries + 100; i++)
             {
-                for (int i = 1; i < 25; i++)
-                {
-                    mailData.addNode(testData[i]);
-                }
-                //mailData.print2DUtil(1);
-                auto end = std::chrono::system_clock::now();
-                std::chrono::duration<double> elapsed_seconds = end-start;
-                insert[insertElements] = elapsed_seconds.count();
-                insertElements++;
+                mailData.addNode(testData[i]);
             }
+            high_resolution_clock::time_point end = high_resolution_clock::now();
+            duration<double> execTime = duration_cast<microseconds>(end - start);
+            insert[numEntries/100] = (execTime.count());
+            numEntries += 100;
         }
-        for (int i = 0; i < 120; i++)
+        for (int i = 0; i < 400; i++)
         {
             cout << insert[i] << endl;
         }
