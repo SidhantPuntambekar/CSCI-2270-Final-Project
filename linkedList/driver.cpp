@@ -39,11 +39,11 @@ int main(int argc, char* argv[])
                 LL.insert(LL.searchList(testData[i-1]), testData[i]);
             }
             high_resolution_clock::time_point endInsert = high_resolution_clock::now();
-            duration<double> execTimeInsert = duration_cast<microseconds>(endInsert - startInsert);
-            insert[numEntries/100] = (execTimeInsert.count())/100;
+            duration<double> execTimeInsert = duration_cast<microseconds>(endInsert - startInsert)/100;
+            insert[numEntries/100] = (execTimeInsert.count());
 
             high_resolution_clock::time_point startSearch = high_resolution_clock::now();
-            
+
             numEntries += 100;
         }
         for (int i = 0; i < 400; i++)
