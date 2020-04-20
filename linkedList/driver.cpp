@@ -42,6 +42,7 @@ int main(int argc, char* argv[])
             duration<double> execTimeInsert = duration_cast<microseconds>(endInsert - startInsert);
             insert[numEntries/100] = (execTimeInsert.count())/100;
 
+            high_resolution_clock::time_point startSearch = high_resolution_clock::now();
             
             numEntries += 100;
         }
