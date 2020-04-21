@@ -24,11 +24,11 @@ class HashTable
 public:
     HashTable(int bsize);  // Constructor
 
-    // inserts a key into hash table
+    //inserts a key into hash table
     //utilize collision resolution - Vignesh
-    bool insertItem(int key); 
-    void linearProb(int key); //added by Vignesh
-    void quadraticProb(int key); //added by Vignesh
+    bool LLChaining(int key); 
+    bool linearProb(int key); //added by Vignesh
+    bool quadraticProb(int key); //added by Vignesh
 
     // hash function to map values to key
     unsigned int hashFunction(int key);
