@@ -32,8 +32,6 @@ void LinkedList::insert(Node* prev, int newKey){
   }
 }
 
-
-// TODO: SILVER PROBLEM
 // Delete node at a particular index
 bool LinkedList::deleteAtIndex(int n)
 {
@@ -47,7 +45,6 @@ bool LinkedList::deleteAtIndex(int n)
   // Special case to delete the head
     if (n == 0) 
     {
-        //TODO
         Node* temp = head;
         head = head -> next;
         delete temp;
@@ -57,7 +54,6 @@ bool LinkedList::deleteAtIndex(int n)
   Node *pres = head;
 	Node *prev = NULL;
 
-  // TODO
   for (int i = 0; i < n; i++)
   {
     prev = pres;
