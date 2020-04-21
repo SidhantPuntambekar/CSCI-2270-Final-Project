@@ -14,7 +14,6 @@ int main(int argc, char* argv[])
     int testData[40000];
     float insert[400];
     float search[400];
-    //vector<float> randomNumbers[40000];
     ifstream LinkedListTestData(argv[1]);
     if (LinkedListTestData.fail())
     {
@@ -67,6 +66,21 @@ int main(int argc, char* argv[])
             search[numEntries/100] = (execTimeSearch.count())/100;
             numEntries += 100;
         }
+
+        ofstream results; //Create output file stream of results
+        results.open("resultsLinkedList.csv", std::ios_base::app); //Write to results.txt
+        results << "Insert Linked Lists Times" << endl;
+        for (int i = 0; i < 400; i++)
+        {
+            results << insert[i] << ",";
+        }
+        results << endl;
+        results << "Search Linked Lists Times" << endl;
+        for (int i = 0; i < 400; i++)
+        {
+            results << search[i] << ",";
+        }
+
         cout << "Insert" << endl;
         for (int i = 0; i < 400; i++)
         {
