@@ -1,4 +1,4 @@
-#include "hash.hpp"
+#include "hash.h"
 #include <string>
 #include<iostream>
 using namespace std;

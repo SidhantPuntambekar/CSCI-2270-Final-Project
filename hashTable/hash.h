@@ -8,9 +8,9 @@ using namespace std;
 
 struct node
 {
-    int key;
+    int key; //record
     struct node* next;
-    struct node * prev;
+    struct node* prev; //added by Vignesh for LL chaining 
 };
 
 class HashTable
@@ -18,16 +18,18 @@ class HashTable
     int tableSize;  // No. of buckets (linked lists)
 
     // Pointer to an array containing buckets
-    node* *table;
+    node* *table; 
     int numOfcolision =0;
     node* createNode(int key, node* next);
 public:
     HashTable(int bsize);  // Constructor
 
     // inserts a key into hash table
-    bool insertItem(int key);
-    void linearProb(int key);
-    void quadraticProb(int key);
+    //utilize collision resolution - Vignesh
+    bool insertItem(int key); 
+    void linearProb(int key); //added by Vignesh
+    void quadraticProb(int key); //added by Vignesh
+
     // hash function to map values to key
     unsigned int hashFunction(int key);
 
