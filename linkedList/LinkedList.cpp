@@ -70,8 +70,6 @@ bool LinkedList::deleteAtIndex(int n)
 	return isDeleted;
 }
 
-// TODO: GOLD PROBLEM
-// Swap the first and last nodes (don't just swap the values)
 bool LinkedList::swapFirstAndLast()
 {
     bool isSwapped = false;
@@ -81,7 +79,6 @@ bool LinkedList::swapFirstAndLast()
         return false;
     }
 
-    // TODO (take care of the edge case when your linkedlist has just 2 nodes)
     Node *prev = head;
     Node *tail = head;
 
