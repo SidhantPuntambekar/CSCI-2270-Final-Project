@@ -3,8 +3,13 @@
 using namespace std;
 
 // Add a new node to the list
-void LinkedList::insert(Node* prev, int newKey){
+void LinkedList::insert(int newKey){
 
+    Node* ptr = head;
+    while (ptr != NULL && ptr->key != newKey)
+    {
+        ptr = ptr -> next;
+    }
   //Check if head is Null i.e list is empty
   if(head == NULL)
   {
@@ -14,7 +19,7 @@ void LinkedList::insert(Node* prev, int newKey){
   }
 
   // if list is not empty, look for prev and append our node there
-  else if(prev == NULL)
+  else if(ptr == NULL)
   {
       Node* newNode = new Node;
       newNode->key = newKey;
@@ -26,8 +31,8 @@ void LinkedList::insert(Node* prev, int newKey){
   {
       Node* newNode = new Node;
       newNode->key = newKey;
-      newNode->next = prev->next;
-      prev->next = newNode;
+      newNode->next = ptr->next;
+      ptr->next = newNode;
 
   }
 }

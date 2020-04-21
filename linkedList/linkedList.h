@@ -16,7 +16,7 @@ class LinkedList
     {
     	head = NULL;
     }
-    void insert(Node *prev, int newKey);
+    void insert(int newKey);
     Node* searchList(int key);
     bool deleteAtIndex(int index);
     bool swapFirstAndLast();
