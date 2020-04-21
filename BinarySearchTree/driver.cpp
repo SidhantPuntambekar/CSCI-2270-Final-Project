@@ -34,8 +34,7 @@ int main(int argc, char* argv[])
         while (numEntries < 40000)
         {
             //Insert
-            high_resolution_clock::time_point startInsert = high_resolution_clock::now();
-            mailData.addNode(testData[numEntries]); 
+            high_resolution_clock::time_point startInsert = high_resolution_clock::now(); 
             for (int i = numEntries; i < numEntries + 100; i++)
             {
                 mailData.addNode(testData[i]);
@@ -46,15 +45,26 @@ int main(int argc, char* argv[])
 
             //Search
             high_resolution_clock::time_point startSearch = high_resolution_clock::now();
-
+            for (int i = 0; i < 100; i++)
+            {
+                int index = rand()%(numEntries+1);
+                bool found = mailData.searchKey(testData[index]);
+            }
             high_resolution_clock::time_point endSearch = high_resolution_clock::now();
-            duration<double> execTimeInsert = duration_cast<microseconds>(endSearch - startSearch);
-            search[numEntries/100] = (execTimeInsert.count())/100;
+            duration<double> execTimeSearch = duration_cast<microseconds>(endSearch - startSearch);
+            search[numEntries/100] = (execTimeSearch.count())/100;
             numEntries += 100;
         }
+        cout << "Insert" << endl;
         for (int i = 0; i < 400; i++)
         {
             cout << insert[i] << endl;
+        }
+        cout << endl;
+        cout << "Search" << endl;
+        for (int i = 0; i < 400; i++)
+        {
+            cout << search[i] << endl;
         }
     }
 }
