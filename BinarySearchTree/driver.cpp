@@ -55,6 +55,19 @@ int main(int argc, char* argv[])
             search[numEntries/100] = (execTimeSearch.count())/100;
             numEntries += 100;
         }
+        ofstream results; //Create output file stream of results
+        results.open("resultsBST.csv", std::ios_base::app); //Write to results.txt
+        results << "Insert BST Times" << endl;
+        for (int i = 0; i < 400; i++)
+        {
+            results << insert[i] << ",";
+        }
+        results << endl;
+        results << "Search BST Times" << endl;
+        for (int i = 0; i < 400; i++)
+        {
+            results << search[i] << ",";
+        }
         cout << "Insert" << endl;
         for (int i = 0; i < 400; i++)
         {
