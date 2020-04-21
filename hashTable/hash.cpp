@@ -12,12 +12,16 @@ using namespace std;
 //CONSTRUCTOR
 HashTable::HashTable(int size){
     tableSize = 40009;
+    //initialize table
+    for(int i=0; i<tableSize; i++){
+        table[i]=NULL;
+    }
 }
 
 
 ///////////////////////////////////////// LL CHAINING ///////////////////////////////////////////
 
-bool HashTable:: insertItem(int key){ //LL chaining implementation
+bool HashTable:: LLChaining(int key){ //LL chaining implementation
     int index= hashFunction(key); //retrieve index from hash fxn
     node*hashElement = new node; //pointer to new value to be inserted
     hashElement->key = key;
@@ -31,7 +35,8 @@ bool HashTable:: insertItem(int key){ //LL chaining implementation
         while(temp!=NULL){
             numOfcolision++;
             if(temp->key == key){
-                return false;
+                cout<<"Duplicate found"<<endl;
+                return true;
             }
             temp = temp->next; //keep going
         }
@@ -52,6 +57,7 @@ bool HashTable:: insertItem(int key){ //LL chaining implementation
 }
 
 //search via LL chaining
+//traverse entire LL: worst case = O(N)
 node * HashTable:: searchItemLL(int key){
     bool found = false;
     int index = hashFunction(key); //index from hash fxn
@@ -61,6 +67,7 @@ node * HashTable:: searchItemLL(int key){
         if(search->key ==key){
             cout<<"found key " << key<<endl;
             found = true;
+            return search; //return node found with correct key value
         }
         
         search = search->next;
@@ -79,29 +86,35 @@ node * HashTable:: searchItemLL(int key){
 ///////////////////////////////////////// LINEAR PROBING ///////////////////////////////////////////
 
 //insert via linear probing
-void HashTable:: linearProb(int key){ 
+bool HashTable:: linearProb(int key){ 
+
     node*hashElement = new node; //pointer to new value to be inserted
     hashElement->key = key;
-    int index = hashFunction(key);
-    while(table[index]!=NULL){
-        numOfcolision++;
-        index++;
-        if(index==tableSize-1){
-            index = 0;
+
+    for(int i=0 ;i<tableSize;i++){
+        if(table[(hashFunction(key)+i) % tableSize]==NULL){
+            table[(hashFunction(key)+i) % tableSize]= hashElement;
+            cout<<"Insert successful"<<endl;
+            return true;
         }
+        numOfcolision++;
     }
+    
 
-    table[index] = hashElement;
-
-    //cout<<"Table is full. Cannot insert"<<endl;
+    cout<<"Table is full. Cannot insert"<<endl;
+    return false;
 }
 
 //search via linear probing
 node * HashTable:: searchItemLinear(int key){
+
     for(int i=0; i<tableSize;i++){
         if(table[(hashFunction(key)+i)%tableSize]->key==key){
+            cout<<"Item found"<<endl;
             return table[(hashFunction(key)+i)%tableSize];
         }
+
+
     }
 
     cout<<"Item not found"<<endl;
@@ -113,37 +126,36 @@ node * HashTable:: searchItemLinear(int key){
 ///////////////////////////////////////// QUADRATIC PROBING ///////////////////////////////////////////
  
 //insert via quadratic probing
-void HashTable:: quadraticProb(int key){ 
-    node*hashElement = new node; //pointer to new value to be inserted
+bool HashTable:: quadraticProb(int key){ 
+    node*hashElement = new node; 
     hashElement->key = key;
-    
-    int i= hashFunction(key); //index 
-    int index = i;
-    int a = 1;
-    while(table[index]!=NULL){ //while table at index is occupied
-        numOfcolision++;
-        index=i+(a*a); //change index
-        a++;
-    }
 
-    table[index] = hashElement; //finally insert the new node at calculated index
+    for(int i=0 ;i<tableSize;i++){
+        if(table[(hashFunction(key)+(i*i)) % tableSize]==NULL){
+            table[(hashFunction(key)+(i*i)) % tableSize]= hashElement;
+            cout<<"Insert successful"<<endl;
+            return true;
+        }
+        numOfcolision++;
+    }
+    
+
+    cout<<"Table is full. Cannot insert"<<endl;
+    return false;
 }
 
 
 //search via quadratic probing
 node * HashTable:: searchItemQuadtratic(int key){
-    int i= hashFunction(key);
-    int index = i;
-    int a = 1;
-    node* result = NULL;
-    while(table[index]->key!=key){
-        numOfcolision++;
-        index=i+(a*a);
-        a++;
+    for(int i=0; i<tableSize;i++){
+        if(table[(hashFunction(key)+(i*i))%tableSize]->key==key){
+            cout<<"Item found"<<endl;
+            return table[(hashFunction(key)+(i*i))%tableSize];
+        }
     }
 
-    result = table[index];
-    return result; 
+    cout<<"Item not found"<<endl;
+    return NULL;
 
 }
 
@@ -163,8 +175,10 @@ unsigned int HashTable:: hashFunction(int key){
 void HashTable:: printTable(){
 
     for(int i=0; i<tableSize;i++){
-        cout<<table[i]->key<<" "<<endl;
+        cout<<table[i]->key<<" ";
     }
+
+    cout<<endl;
 
 
 }
@@ -173,6 +187,5 @@ void HashTable:: printTable(){
 int HashTable:: getNumOfCollision(){
     return numOfcolision;
 }
-
 
 
