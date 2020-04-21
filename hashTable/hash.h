@@ -36,7 +36,9 @@ public:
     void printTable();
     int getNumOfCollision();
 
-    node* searchItem(int key);
+    node* searchItemLL(int key); //done
+    node* searchItemLinear(int key); //done
+    node* searchItemQuadtratic(int key); //done
 };
 
 #endif
