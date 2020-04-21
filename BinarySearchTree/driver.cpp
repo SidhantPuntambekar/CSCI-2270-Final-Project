@@ -33,6 +33,7 @@ int main(int argc, char* argv[])
         int numEntries = 0;
         while (numEntries < 40000)
         {
+            //Insert
             high_resolution_clock::time_point startInsert = high_resolution_clock::now();
             mailData.addNode(testData[numEntries]); 
             for (int i = numEntries; i < numEntries + 100; i++)
@@ -42,6 +43,13 @@ int main(int argc, char* argv[])
             high_resolution_clock::time_point endInsert = high_resolution_clock::now();
             duration<double> execTimeInsert = duration_cast<microseconds>(endInsert - startInsert);
             insert[numEntries/100] = (execTimeInsert.count())/100;
+
+            //Search
+            high_resolution_clock::time_point startSearch = high_resolution_clock::now();
+
+            high_resolution_clock::time_point endSearch = high_resolution_clock::now();
+            duration<double> execTimeInsert = duration_cast<microseconds>(endSearch - startSearch);
+            search[numEntries/100] = (execTimeInsert.count())/100;
             numEntries += 100;
         }
         for (int i = 0; i < 400; i++)
