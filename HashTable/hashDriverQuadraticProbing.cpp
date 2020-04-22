@@ -66,13 +66,13 @@ int main(int argc, char* argv[])
 
         ofstream results; //Create output file stream of results
         results.open("resultsQuadraticProbing.csv", std::ios_base::app); //Write to results.txt
-        results << "Insert Linked Lists Times" << endl;
+        results << "Insert Quadratic Probing Times" << endl;
         for (int i = 0; i < 400; i++)
         {
             results << insert[i] << ",";
         }
         results << endl;
-        results << "Search Linked Lists Times" << endl;
+        results << "Search Quadratic Probing Times" << endl;
         for (int i = 0; i < 400; i++)
         {
             results << search[i] << ",";
