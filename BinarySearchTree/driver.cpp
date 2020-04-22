@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
             numEntries += 100;
         }
         ofstream results; //Create output file stream of results
-        results.open("resultsBST.csv", std::ios_base::app); //Write to results.txt
+        results.open("resultsBST.csv", std::ios_base::app); //Write to resultsBST.txt
         results << "Insert BST Times" << endl;
         for (int i = 0; i < 400; i++)
         {
