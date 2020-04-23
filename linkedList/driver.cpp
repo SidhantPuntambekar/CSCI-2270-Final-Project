@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
         }
 
         ofstream results; //Create output file stream of results
-        results.open("resultsLinkedList.csv", std::ios_base::app); //Write to results.txt
+        results.open("resultsLinkedList.csv", std::ios_base::app); //Write to resultsLinkedList.csv
         results << "Insert Linked Lists Times" << endl;
         for (int i = 0; i < 400; i++)
         {
