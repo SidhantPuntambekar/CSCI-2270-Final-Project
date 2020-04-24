@@ -92,6 +92,5 @@ int main(int argc, char* argv[])
         {
             cout << search[i] << endl;
         }
-        //LL.printList();
     }
 }
