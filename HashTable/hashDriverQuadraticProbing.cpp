@@ -37,15 +37,29 @@ int main(int argc, char* argv[])
         }
         int insertElements = 1;
         int numEntries = 0;
-        
+
+        ofstream results; //Create output file stream of results
+        results.open("resultsQuadraticProbing.csv", std::ios_base::app);
+        results<<"Quadratic Probing collisions: "<<endl;
         while (numEntries < 40000)
         {
             //Insert
+           // cout<<"collisions: "<<HashTable.getNumOfCollision()<<" ";
+           
             high_resolution_clock::time_point startInsert = high_resolution_clock::now();
             for (int i = numEntries; i < numEntries + 100; i++)
             {
                 
                 HashTable.quadraticProb(testData[i]); //insert via linear prob
+               
+                //then print num collisions
+                if(i%100==0){
+                    cout<<"collisions: "<<HashTable.getNumOfCollision()<<" ";
+                    results<<HashTable.getNumOfCollision()<<",";
+                }
+                
+                
+                
             }
             high_resolution_clock::time_point endInsert = high_resolution_clock::now();
             duration<double> execTimeInsert = duration_cast<microseconds>(endInsert - startInsert);
@@ -64,12 +78,13 @@ int main(int argc, char* argv[])
             numEntries += 100;
         }
 
-        ofstream results; //Create output file stream of results
-        results.open("resultsQuadraticProbing.csv", std::ios_base::app); //Write to results.txt
+        results<<endl<<endl;
+         //Write to results.txt
         results << "Insert Quadratic Probing Times" << endl;
         for (int i = 0; i < 400; i++)
         {
             results << insert[i] << ",";
+            
         }
         results << endl;
         results << "Search Quadratic Probing Times" << endl;
@@ -91,5 +106,6 @@ int main(int argc, char* argv[])
             cout << search[i] << endl;
         }
         
+       cout<<"collisions: "<<HashTable.getNumOfCollision()<<endl;
     }
 }
