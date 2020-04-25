@@ -104,24 +104,24 @@ We will call this function from addNode.
 
 Node* BST:: addNodeHelper(Node* currNode, int data)
 {
-    if(currNode == NULL)
+    if (currNode == NULL) //Insert at root
     {
         return createNode(data);
     }
-    else if(currNode->key < data)
+    else if (currNode -> key < data) //Insert on right branch
     {
-        currNode->right = addNodeHelper(currNode->right,data);
+        currNode -> right = addNodeHelper(currNode -> right, data);
     }
-    else if(currNode->key > data)
+    else if(currNode -> key > data) //Insert on left branch
     {
-        currNode->left = addNodeHelper(currNode->left,data);
+        currNode -> left = addNodeHelper(currNode -> left,data);
     }
-    return currNode;
+    return currNode; //Return pointer to currNode
 
 }
 
 
-void BST:: addNode(int data)
+void BST:: addNode(int data) //Actual function
 {
     root = addNodeHelper(root, data);
     //cout<<data<<" has been added"<<endl;
@@ -268,8 +268,6 @@ void BST::removeRange(int low, int high)
 }
 
 // ------------------------------------ Check for a Valid BST ------------------------------------------------
-
-// GOLD TODO
 bool isValidBSTHelper(Node *crawler)
 {
     if (crawler == NULL)
@@ -289,6 +287,5 @@ bool isValidBSTHelper(Node *crawler)
 
 bool BST::isValidBST()
 {
-  //TODO Uncomment below and Complete this function, you can use any logic (add a helper function if you want)
   return isValidBSTHelper(root);
 }

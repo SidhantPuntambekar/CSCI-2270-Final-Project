@@ -3,37 +3,36 @@
 using namespace std;
 
 // Add a new node to the list
-void LinkedList::insert(int newKey){
-
-    Node* ptr = head;
+void LinkedList::insert(int newKey)
+{
+    Node* ptr = head; //Traverse till end of list
     while (ptr != NULL && ptr->key != newKey)
     {
-        ptr = ptr -> next;
+        ptr = ptr -> next; //Traverse till end of lits
     }
   //Check if head is Null i.e list is empty
   if(head == NULL)
   {
     head = new Node;
-    head->key = newKey;
-    head->next = NULL;
+    head -> key = newKey;
+    head -> next = NULL;
   }
 
   // if list is not empty, look for prev and append our node there
   else if(ptr == NULL)
   {
       Node* newNode = new Node;
-      newNode->key = newKey;
-      newNode->next = head;
+      newNode -> key = newKey;
+      newNode -> next = head;
       head = newNode;
   }
 
-  else
+  else 
   {
       Node* newNode = new Node;
-      newNode->key = newKey;
-      newNode->next = ptr->next;
-      ptr->next = newNode;
-
+      newNode -> key = newKey;
+      newNode -> next = ptr -> next;
+      ptr -> next = newNode;
   }
 }
 
@@ -114,9 +113,9 @@ void LinkedList::printList()
 Node* LinkedList::searchList(int key) 
 {
     Node* ptr = head;
-    while (ptr != NULL && ptr->key != key)
+    while (ptr != NULL && ptr -> key != key) //Loop until we find node with key value
     {
         ptr = ptr -> next;
     }
-    return ptr;
+    return ptr; //Return ptr to where key node was located
 }
