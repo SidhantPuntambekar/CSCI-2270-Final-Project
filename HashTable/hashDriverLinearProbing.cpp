@@ -38,6 +38,11 @@ int main(int argc, char* argv[])
         int insertElements = 1;
         int numEntries = 0;
         
+
+
+        ofstream results; //Create output file stream of results
+        results.open("resultsLinearProbing.csv", std::ios_base::app);
+        results<<"Linear Probing collisions: "<<endl;
         while (numEntries < 40000)
         {
             //Insert
@@ -46,6 +51,14 @@ int main(int argc, char* argv[])
             {
                 
                 HashTable.linearProb(testData[i]); //insert via linear prob
+
+
+                //then print num collisions
+                if(i%100==0){
+                    cout<<"collisions: "<<HashTable.getNumOfCollision()<<" ";
+                    results<<HashTable.getNumOfCollision()<<",";
+                }
+                
             }
             high_resolution_clock::time_point endInsert = high_resolution_clock::now();
             duration<double> execTimeInsert = duration_cast<microseconds>(endInsert - startInsert);
@@ -64,8 +77,7 @@ int main(int argc, char* argv[])
             numEntries += 100;
         }
 
-        ofstream results; //Create output file stream of results
-        results.open("resultsLinearProbing.csv", std::ios_base::app); //Write to results.txt
+        
         results << "Insert Linear Probing Times" << endl;
         for (int i = 0; i < 400; i++)
         {
@@ -90,6 +102,8 @@ int main(int argc, char* argv[])
         {
             cout << search[i] << endl;
         }
+
+        cout<<"Number of collisions: "<<HashTable.getNumOfCollision()<<endl;
         
     }
 }
