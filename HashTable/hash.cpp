@@ -9,6 +9,10 @@ using namespace std;
 // 2. linear probing
 // 3. quadratic probing
 
+//duplicates were not handled in any of the 
+//collision resolutions
+//becuase that would result in more time
+
 //CONSTRUCTOR
 HashTable::HashTable(int size){ //seg faulting in here
    
@@ -28,6 +32,7 @@ HashTable::HashTable(int size){ //seg faulting in here
 //1)
 ///////////////////////////////////////// LL CHAINING ///////////////////////////////////////////
 
+//insert via LL Chaining
 bool HashTable:: LLChaining(int key){ //LL chaining implementation
     int index= hashFunction(key); //retrieve index from hash fxn
     node*hashElement = new node; //pointer to new value to be inserted
@@ -59,6 +64,7 @@ node * HashTable:: searchItemLL(int key){
         }
         
         search = search->next;
+        numOfcolision++;
 
     }
 
@@ -84,8 +90,10 @@ bool HashTable:: linearProb(int key){
             table[(hashFunction(key)+i) % tableSize]= hashElement;
             cout<<"Insert successful"<<endl;
             return true;
+        }else{
+            numOfcolision++;
         }
-        numOfcolision++;
+        
     }
     
 
@@ -124,8 +132,11 @@ bool HashTable:: quadraticProb(int key){
             table[(hashFunction(key)+(i*i)) % tableSize]= hashElement;
             cout<<"Insert successful"<<endl;
             return true;
+        }else{
+
+            numOfcolision++;
         }
-        numOfcolision++;
+        
     }
     
 
@@ -164,7 +175,7 @@ unsigned int HashTable:: hashFunction(int key){
 void HashTable:: printTable(){
 
     for(int i=0; i<tableSize;i++){
-        cout<<table[i]->key<<" ";
+        cout<<table[i]->key<<", ";
     }
 
     cout<<endl;
