@@ -9,7 +9,7 @@ Create a node with key as data
 Node* BST:: createNode(int data)
 {
     Node* newNode = new Node;
-    newNode->key = data;
+    newNode -> key = data;
     newNode->left = NULL;
     newNode->right = NULL;
     return newNode;
