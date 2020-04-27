@@ -69,8 +69,9 @@ void BST::print2DUtilHelper(Node *currNode, int space)
 {
     // Base case
     if (currNode == NULL)
+    {
         return;
-
+    }
     // Increase distance between levels
     space += COUNT;
 
@@ -81,7 +82,9 @@ void BST::print2DUtilHelper(Node *currNode, int space)
     // count
     printf("\n");
     for (int i = COUNT; i < space; i++)
+    {
         printf(" ");
+    }
     printf("%d\n", currNode->key);
 
     // Process left child
