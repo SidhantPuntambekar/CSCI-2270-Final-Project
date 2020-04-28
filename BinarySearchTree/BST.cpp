@@ -76,7 +76,7 @@ void BST::print2DUtilHelper(Node *currNode, int space)
     space += COUNT;
 
     // Process right child first
-    print2DUtilHelper(currNode->right, space);
+    print2DUtilHelper(currNode -> right, space);
 
     // Print current node after space
     // count
@@ -85,13 +85,13 @@ void BST::print2DUtilHelper(Node *currNode, int space)
     {
         printf(" ");
     }
-    printf("%d\n", currNode->key);
+    printf("%d\n", currNode -> key);
 
     // Process left child
-    print2DUtilHelper(currNode->left, space);
+    print2DUtilHelper(currNode -> left, space);
 }
 
-void BST::print2DUtil( int space)
+void BST::print2DUtil(int space)
 {
   print2DUtilHelper(root, space);
 }
