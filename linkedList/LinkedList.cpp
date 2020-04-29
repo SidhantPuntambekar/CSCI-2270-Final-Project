@@ -11,7 +11,7 @@ void LinkedList::insert(int newKey)
         ptr = ptr -> next; //Traverse till end of lits
     }
   //Check if head is Null i.e list is empty
-  if(head == NULL)
+  if (head == NULL)
   {
     head = new Node;
     head -> key = newKey;
@@ -19,7 +19,7 @@ void LinkedList::insert(int newKey)
   }
 
   // if list is not empty, look for prev and append our node there
-  else if(ptr == NULL)
+  else if (ptr == NULL)
   {
       Node* newNode = new Node;
       newNode -> key = newKey;
