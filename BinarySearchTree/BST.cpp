@@ -105,7 +105,7 @@ This function will add the data in the tree rooted at currNode.
 We will call this function from addNode.
 **/
 
-Node* BST:: addNodeHelper(Node* currNode, int data)
+Node* BST::addNodeHelper(Node* currNode, int data)
 {
     if (currNode == NULL) //Insert at root
     {
