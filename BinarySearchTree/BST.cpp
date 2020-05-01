@@ -136,7 +136,7 @@ void BST:: addNode(int data) //Actual function
 printTree() function will call this function.
 **/
 
-void BST:: printTreeHelper(Node* currNode)
+void BST::printTreeHelper(Node* currNode)
 {
      if(currNode)
      {
