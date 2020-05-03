@@ -14,7 +14,8 @@ using namespace std;
 //becuase that would result in more time
 
 //CONSTRUCTOR
-HashTable::HashTable(int size){ //seg faulting in here
+HashTable::HashTable(int size)
+{ 
    
     tableSize = 40009;
     //initialize table
